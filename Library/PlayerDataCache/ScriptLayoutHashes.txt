@@ -171,7 +171,7 @@ bc68edb0af574bf79f9550ead8ebae5c UnityEngine.HoloLens.dll:UnityEngine.Audio.Audi
 c2275a8bfbb9f9942cad75ecdfded41d UnityEngine.HoloLens.dll:UnityEngine.VR.WSA.SpatialMappingCollider
 45f3431f0103c41611e8d4eec3d439df UnityEngine.HoloLens.dll:UnityEngine.VR.WSA.SpatialMappingRenderer
 9b20260cbe18d3c2ba9d5e6f94929419 Assembly-CSharp.dll:.GvrFPS
-ee5610c07a08ba84331f0d4ff2c25feb Assembly-CSharp.dll:.PlayerMain
+8cbf5f331267df43798c7e5f064c335e Assembly-CSharp.dll:.PlayerMain
 6a782a0988125ab45e4aa3b821ea9146 Assembly-CSharp.dll:.GvrReticlePointer
 4b8ea17c4350779db30d026c2281dfcb Assembly-CSharp.dll:.PooledPageProvider
 213976e6ef69ef51b81ef082c04b8edb Assembly-CSharp.dll:.GvrArmModelOffsets
@@ -197,8 +197,3 @@ bd4787eed7b52d749b5d4999a0b192e6 Assembly-CSharp.dll:VRKeyboard.Utils.GazeRaycas
 e399fc54e753911801f12ac57c8fc414 Assembly-CSharp.dll:.GVRDemoManager
 f1dced04f168103741226c31e59bf1c5 Assembly-CSharp.dll:.Tab
 d885ad79a6ef5bfe2ce10637aac0b8a0 Assembly-CSharp.dll:GVRSample.AutoPlayVideo
-1cb40c746a01332eb78618e045b0b5a9 Assembly-CSharp.dll:.Reporter
-05524b8f659e7bfe5756d1335fec24ba Assembly-CSharp.dll:.ReporterMessageReceiver
-05524b8f659e7bfe5756d1335fec24ba Assembly-CSharp.dll:.ReporterGUI
-922dde826533f20a40eadb188df86725 Assembly-CSharp.dll:.TestReporter
-05524b8f659e7bfe5756d1335fec24ba Assembly-CSharp.dll:.Rotate

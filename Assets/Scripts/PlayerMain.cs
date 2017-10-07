@@ -9,17 +9,23 @@ public class PlayerMain : MonoBehaviour {
     int x_index = 0;
     int y_index = 0;
     public GameObject message;
+    public GameObject controller;
+    private Transform controllerTransform;
     private static int size = 20;
     int[] x_movements = new int[size];
     int[] y_movements = new int[size];
+    int[] x_movements = new int[size];
     string data = "";
+    public float gestureThreshold = 0.01f;
     public bool isTraining = false;
 
     private HiddenMarkovClassifier classifier;
 
     // Use this for initialization
     void Start () {
-        
+
+        controllerTransform = controller.GetComponent<Transform>();
+
 
         // Declare some training data
         int[][] inputs = new int[][]
@@ -152,7 +158,10 @@ public class PlayerMain : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-        
+        int c_x = (int) ((controllerTransform.rotation.x * 10)%10) + 11;
+        if (c_x < 1) c_x = 1;
+        if (c_x > 11) c_x = 11;
+        Debug.Log("Controller X: "+c_x);
 
         int x = (int) (transform.rotation.x * 10) + 6;
         if (x < 0) x = 0;
@@ -179,15 +188,16 @@ public class PlayerMain : MonoBehaviour {
                 Debug.Log(y_movements);
                 int isVertical = classifier.Decide(x_movements);
                 int isHorizontal = classifier.Decide(y_movements);
+                int isController = classifier.Decide()
                 Text canvas = message.GetComponent<Text>();
                 string answer = "";
-                Debug.Log(isVertical+" , "+isHorizontal);
+
                 if (isHorizontal == 1 && isVertical == 0)
                 {
-                    answer = "SHAKING";
+                    answer = "NO";
                 } else if (isVertical == 1 && isHorizontal == 0)
                 {
-                    answer = "NODDING";
+                    answer = "YES";
                 }
                 else
                 {
