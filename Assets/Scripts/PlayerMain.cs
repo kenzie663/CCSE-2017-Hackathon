@@ -8,13 +8,16 @@ using Accord.Statistics.Models.Markov.Learning;
 public class PlayerMain : MonoBehaviour {
     int x_index = 0;
     int y_index = 0;
+    int cx_index = 0;
+    int cy_index = 0;
     public GameObject message;
     public GameObject controller;
     private Transform controllerTransform;
     private static int size = 20;
     int[] x_movements = new int[size];
     int[] y_movements = new int[size];
-    int[] x_movements = new int[size];
+    int[] cx_movements = new int[size];
+    int[] cy_movements = new int[size];
     string data = "";
     public float gestureThreshold = 0.01f;
     public bool isTraining = false;
@@ -151,21 +154,23 @@ public class PlayerMain : MonoBehaviour {
 
         // Train the sequence classifier using the algorithm
         teacher.Learn(inputs, outputs);
-
-        // Compute the classifier answers for the given inputs
-        int[] answers = classifier.Decide(inputs);
     }
 	
 	// Update is called once per frame
 	void Update () {
-        int c_x = (int) ((controllerTransform.rotation.x * 10)%10) + 11;
+        int c_x = (int) ((controllerTransform.rotation.x * 10) + 11);
         if (c_x < 1) c_x = 1;
         if (c_x > 11) c_x = 11;
         Debug.Log("Controller X: "+c_x);
 
+        int c_y = (int)((controllerTransform.rotation.y * 10) + 6);
+        if (c_y < 0) c_y = 1;
+        if (c_y > 9) c_y = 9;
+        Debug.Log("Controller Y: " + c_y);
+
         int x = (int) (transform.rotation.x * 10) + 6;
-        if (x < 0) x = 0;
-        if (x > 12) x = 12;
+        if (x < 2) x = 0;
+        if (x > 10) x = 10;
 
         int y = (int) (transform.rotation.y * 10) + 6;
         if (y < 0) y = 0;
@@ -177,33 +182,54 @@ public class PlayerMain : MonoBehaviour {
             if (x_index < size)
             {
                 x_movements[x_index++] = x;
-            } else if (y_index < size)
+            }
+
+            if (y_index < size)
             {
                 y_movements[y_index++] = y;
             }
-            else
+
+            if (cx_index < size)
+            {
+                cx_movements[cx_index++] = c_x;
+            }
+
+            if (cy_index < size)
+            {
+                cy_movements[cy_index++] = c_y;
+            }
+
+            if (x_index >= size && y_index >= size && cx_index >= size && cy_index >= size)
             {
                 x_index = 0;
                 y_index = 0;
+                cx_index = 0;
+                cy_index = 0;
                 Debug.Log(y_movements);
                 int isVertical = classifier.Decide(x_movements);
                 int isHorizontal = classifier.Decide(y_movements);
-                int isController = classifier.Decide()
+                int isControllerHor = classifier.Decide(cx_movements);
+                int isControllerVert = classifier.Decide(cy_movements);
                 Text canvas = message.GetComponent<Text>();
                 string answer = "";
+                if (isControllerHor == 1 && isControllerVert == 0)
+                {
+                    answer = "Hello!";
+                }
 
-                if (isHorizontal == 1 && isVertical == 0)
+                if (isControllerHor == 0 && isControllerVert == 1 && isVertical == 1)
                 {
-                    answer = "NO";
-                } else if (isVertical == 1 && isHorizontal == 0)
+                    answer = "Come over!";
+                } else if (isHorizontal == 1 && isVertical == 0)
                 {
-                    answer = "YES";
+                    answer = "No";
                 }
-                else
+                else if (isVertical == 1 && isHorizontal == 0)
                 {
-                    answer = "NONE";
+                    answer = "Yes";
                 }
-                canvas.text = answer;
+                if (!answer.Equals(""))
+                    canvas.text = answer;
             }
         } else
         {

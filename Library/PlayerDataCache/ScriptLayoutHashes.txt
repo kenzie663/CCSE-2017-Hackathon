@@ -171,7 +171,7 @@ bc68edb0af574bf79f9550ead8ebae5c UnityEngine.HoloLens.dll:UnityEngine.Audio.Audi
 c2275a8bfbb9f9942cad75ecdfded41d UnityEngine.HoloLens.dll:UnityEngine.VR.WSA.SpatialMappingCollider
 45f3431f0103c41611e8d4eec3d439df UnityEngine.HoloLens.dll:UnityEngine.VR.WSA.SpatialMappingRenderer
 9b20260cbe18d3c2ba9d5e6f94929419 Assembly-CSharp.dll:.GvrFPS
-8cbf5f331267df43798c7e5f064c335e Assembly-CSharp.dll:.PlayerMain
+20b6116352e40dbb817ad376b7fc0b3e Assembly-CSharp.dll:.PlayerMain
 6a782a0988125ab45e4aa3b821ea9146 Assembly-CSharp.dll:.GvrReticlePointer
 4b8ea17c4350779db30d026c2281dfcb Assembly-CSharp.dll:.PooledPageProvider
 213976e6ef69ef51b81ef082c04b8edb Assembly-CSharp.dll:.GvrArmModelOffsets
